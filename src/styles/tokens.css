@@ -1,0 +1,39 @@
+:root {
+  /* Colors (from Figma) */
+  --color-red: #9e0000;
+  --color-gray: #d9d9d9;
+  --color-black: #020202;
+  --color-white: #ffffff;
+  --color-track: #c0c0c0;
+  --color-title: rgb(217 217 217 / 0.8);
+
+  /* Inter stands in for Helvetica Neue until the licensed font is available. */
+  --font-family: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+
+  /* Type scale: mobile minimum → 1440px desktop value from Figma */
+  --fs-display: clamp(3.5rem, 8.4vw, 7.5rem); /* 120px */
+  --fs-heading: clamp(1.75rem, 4.2vw, 3.75rem); /* 60px */
+  --fs-lead: clamp(1.125rem, 2.23vw, 2rem); /* 32px */
+  --fs-panel: clamp(1.25rem, 1.75vw, 1.5625rem); /* 25px */
+  --fs-body: clamp(1rem, 1.4vw, 1.25rem); /* 20px */
+  --fs-small: 0.9375rem; /* 15px */
+  --fs-franja: clamp(0.875rem, 1.67vw, 1.5rem); /* 24px */
+
+  /* Layout */
+  --gutter: 16px;
+  --container: 1240px;
+  --container-step: 1168px;
+  --container-wide: 1252px;
+  --bar-stripe: 12px;
+  --bar-width: 100%;
+
+  --focus-color: var(--color-red);
+}
+
+@media (min-width: 768px) {
+  :root {
+    --gutter: 32px;
+    --bar-stripe: 27px;
+    --bar-width: 88.8%; /* 1279 / 1440 */
+  }
+}

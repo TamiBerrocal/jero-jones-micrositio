@@ -1,0 +1,322 @@
+<!doctype html>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Jero Jones — Cerrá el circuito</title>
+    <meta
+      name="description"
+      content="Diseñá la tapa del nuevo disco de Jero Jones. Subí tu pieza o editá una foto y mandala."
+    />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap"
+      rel="stylesheet"
+    />
+  </head>
+  <body>
+    <header class="site-header">
+      <a href="./" class="site-header__logo">
+        <img src="/assets/logo.svg" alt="Jero Jones" width="245" height="50" />
+      </a>
+    </header>
+
+    <main>
+      <section class="hero" aria-label="Cerrá el circuito">
+        <img class="hero__image" src="/assets/hero.png" alt="" />
+        <div class="franja" aria-hidden="true">
+          <div class="franja__track">
+            <p class="franja__text">
+              <span>Circuito cerrado</span><span>Cerrá el circuito</span><span>Cerrá el circuito</span
+              ><span>Cerrá el circuito</span><span>Cerrá el circuito</span><span>Circuito cerrado</span>
+            </p>
+            <p class="franja__text">
+              <span>Circuito cerrado</span><span>Cerrá el circuito</span><span>Cerrá el circuito</span
+              ><span>Cerrá el circuito</span><span>Cerrá el circuito</span><span>Circuito cerrado</span>
+            </p>
+          </div>
+        </div>
+      </section>
+
+      <section class="participa" aria-labelledby="participa-title">
+        <div class="container">
+          <h1 class="participa__title" id="participa-title">Participá</h1>
+          <div class="participa__copy">
+            <p>Esto no es un concurso de diseño, es parte del disco.</p>
+            <p>
+              Hay pistas escondidas en este sitio. Seguilas, interpretalas y mostrános qué ves.
+              Diseñá la tapa de mi nuevo disco a partir de ellas. Podés subir una pieza que ya
+              hayas creado o empezar a diseñarla acá.
+            </p>
+            <p><strong>Elegí cómo te metés.<br />Empezá a crear.</strong></p>
+          </div>
+          <img
+            class="participa__sticker"
+            src="/assets/sticker-disco-ball.png"
+            alt=""
+            width="100"
+            height="100"
+          />
+        </div>
+      </section>
+
+      <div class="steps">
+        <!-- Step 1: upload a finished piece or a starting photo -->
+        <section class="step step--upload" id="subi" aria-labelledby="subi-title">
+          <span class="bar-stripe bar-stripe--short" aria-hidden="true"></span>
+          <div class="bar-heading">
+            <h2 class="bar-heading__label" id="subi-title">Subí tu pieza</h2>
+          </div>
+          <img
+            class="sticker sticker--cassette"
+            src="/assets/sticker-cassette.png"
+            alt=""
+            width="81"
+            height="105"
+          />
+
+          <div class="step__body">
+            <p class="step__lead">
+              ¿Ya tenés algo hecho? Una foto, un collage, un dibujo –lo que sientas.
+              <strong>Mandalo.</strong>
+            </p>
+            <p class="step__lead step__lead--secondary">
+              Si subís una imagen, la vas a poder editar abajo. Si no subís nada, podés jugar con
+              nuestra foto.
+            </p>
+
+            <input
+              class="visually-hidden"
+              type="file"
+              id="upload-input"
+              accept=".jpg,.jpeg,.png,.pdf,image/jpeg,image/png,application/pdf"
+              data-upload-input
+              tabindex="-1"
+            />
+
+            <button type="button" class="dropzone" data-dropzone aria-describedby="upload-formats">
+              <img src="/assets/icon-image.svg" alt="" width="47" height="42" />
+              <span class="dropzone__text only-pointer"
+                >Arrastrá tu archivo acá o hacé clic para elegirlo</span
+              >
+              <span class="dropzone__text only-touch">Tocá para elegir tu archivo</span>
+            </button>
+
+            <div class="file-card" data-file-card hidden>
+              <div class="file-card__preview">
+                <img class="file-card__thumb" data-file-thumb alt="" hidden />
+                <svg
+                  class="file-card__pdf"
+                  data-file-pdf
+                  viewBox="0 0 48 60"
+                  width="48"
+                  height="60"
+                  aria-hidden="true"
+                  hidden
+                >
+                  <path d="M1 1h32l14 14v44H1z" fill="none" stroke="currentColor" stroke-width="2" />
+                  <path d="M33 1v14h14" fill="none" stroke="currentColor" stroke-width="2" />
+                  <text x="24" y="44" text-anchor="middle" font-size="12" font-weight="700" fill="currentColor">PDF</text>
+                </svg>
+              </div>
+              <div class="file-card__info">
+                <p class="file-card__name" data-file-name></p>
+                <p class="file-card__meta" data-file-meta></p>
+                <p class="file-card__note" data-file-note></p>
+              </div>
+              <div class="file-card__actions">
+                <button type="button" class="btn btn--outline" data-file-replace>Cambiar archivo</button>
+                <button type="button" class="btn btn--text" data-file-remove>Quitar</button>
+              </div>
+            </div>
+
+            <p class="step__note" id="upload-formats">Formatos: JPG, PNG, PDF · hasta 10 MB</p>
+            <p class="status-message" data-upload-status role="status" aria-live="polite"></p>
+          </div>
+        </section>
+
+        <!-- Step 2: optional filter editor -->
+        <section class="step step--editor" id="disena" aria-labelledby="disena-title">
+          <div class="bar-heading">
+            <h2 class="bar-heading__label" id="disena-title">Diseñá acá</h2>
+          </div>
+          <img
+            class="sticker sticker--camera"
+            src="/assets/sticker-camera.png"
+            alt=""
+            width="125"
+            height="86"
+          />
+
+          <div class="step__body step__body--wide">
+            <p class="step__lead">
+              ¿Arrancás de cero? Jugá con nuestra foto –o con la tuya, si la subiste– usando las
+              pistas que hayas encontrado. No hace falta saber diseñar, sólo
+              <strong>tener ganas</strong>.
+            </p>
+
+            <div class="editor">
+              <div class="panel editor__controls">
+                <div class="panel__header">
+                  <h3 class="panel__title">Filtros</h3>
+                  <button type="button" class="btn btn--red" data-filter-reset disabled>
+                    Volver al original
+                  </button>
+                </div>
+                <ul class="filter-list" data-filter-list></ul>
+              </div>
+
+              <div class="panel editor__preview">
+                <div class="panel__header">
+                  <h3 class="panel__title">Vista previa</h3>
+                  <p class="editor__source">
+                    <span data-preview-source>Foto de ejemplo</span>
+                    <a href="#subi" data-preview-upload-link>Subí la tuya</a>
+                  </p>
+                </div>
+                <div class="editor__frame">
+                  <img
+                    class="editor__image"
+                    data-preview-image
+                    src="/assets/default-photo.png"
+                    alt="Vista previa de la imagen con los filtros aplicados"
+                  />
+                  <p class="editor__notice" data-preview-notice hidden>
+                    Los PDF se envían tal cual, sin filtros. Si querés editar, subí un JPG o PNG.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+      </div>
+
+      <!-- Step 3: author details and submission -->
+      <section class="step step--submit" id="envia" aria-labelledby="envia-title">
+        <div class="bar-heading">
+          <h2 class="bar-heading__label" id="envia-title">Enviá tu pieza</h2>
+        </div>
+
+        <div class="step__body step__body--wide">
+          <div class="submit-form" data-submit-form-wrapper>
+            <p class="step__lead">Contanos quién sos y mandá tu tapa.</p>
+            <p class="lock-hint" data-lock-hint>
+              Para enviar, subí un archivo o editá la foto de arriba.
+            </p>
+
+            <form class="submit-grid" data-submit-form novalidate>
+              <figure class="summary">
+                <div class="summary__frame">
+                  <img class="summary__image" data-summary-image src="/assets/default-photo.png" alt="" />
+                  <svg
+                    class="summary__pdf"
+                    data-summary-pdf
+                    viewBox="0 0 48 60"
+                    width="64"
+                    height="80"
+                    aria-hidden="true"
+                    hidden
+                  >
+                    <path d="M1 1h32l14 14v44H1z" fill="none" stroke="currentColor" stroke-width="2" />
+                    <path d="M33 1v14h14" fill="none" stroke="currentColor" stroke-width="2" />
+                    <text x="24" y="44" text-anchor="middle" font-size="12" font-weight="700" fill="currentColor">PDF</text>
+                  </svg>
+                </div>
+                <figcaption class="summary__caption" data-summary-caption>
+                  Todavía no hay nada para enviar.
+                </figcaption>
+              </figure>
+
+              <fieldset class="fields" data-submit-fieldset disabled>
+                <legend class="visually-hidden">Tus datos</legend>
+
+                <div class="field">
+                  <label class="field__label" for="first-name">Nombre</label>
+                  <input
+                    class="field__input"
+                    id="first-name"
+                    name="nombre"
+                    type="text"
+                    autocomplete="given-name"
+                    required
+                    maxlength="80"
+                    aria-describedby="first-name-error"
+                  />
+                  <p class="field__error" id="first-name-error" hidden></p>
+                </div>
+
+                <div class="field">
+                  <label class="field__label" for="last-name">Apellido</label>
+                  <input
+                    class="field__input"
+                    id="last-name"
+                    name="apellido"
+                    type="text"
+                    autocomplete="family-name"
+                    required
+                    maxlength="80"
+                    aria-describedby="last-name-error"
+                  />
+                  <p class="field__error" id="last-name-error" hidden></p>
+                </div>
+
+                <div class="field field--full">
+                  <label class="field__label" for="email">Mail</label>
+                  <input
+                    class="field__input"
+                    id="email"
+                    name="email"
+                    type="email"
+                    inputmode="email"
+                    autocomplete="email"
+                    pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
+                    required
+                    maxlength="120"
+                    aria-describedby="email-error"
+                  />
+                  <p class="field__error" id="email-error" hidden></p>
+                </div>
+
+                <div class="field field--full">
+                  <label class="field__label" for="comment">
+                    Contanos sobre tu pieza <span class="field__optional">(opcional)</span>
+                  </label>
+                  <textarea
+                    class="field__input field__input--textarea"
+                    id="comment"
+                    name="comentario"
+                    rows="4"
+                    maxlength="500"
+                    aria-describedby="comment-count"
+                  ></textarea>
+                  <p class="field__count" id="comment-count" data-comment-count>0 / 500</p>
+                </div>
+
+                <div class="field field--full fields__actions">
+                  <button type="submit" class="btn btn--submit" data-submit-button>
+                    <span class="btn__spinner" aria-hidden="true"></span>
+                    <span data-submit-label>Enviar mi pieza</span>
+                  </button>
+                  <p class="status-message status-message--chip" data-submit-status role="alert" hidden></p>
+                </div>
+              </fieldset>
+            </form>
+          </div>
+
+          <div class="success" data-submit-success hidden tabindex="-1">
+            <p class="success__title" data-success-title>¡Gracias!</p>
+            <p class="success__text" data-success-text></p>
+            <button type="button" class="btn btn--submit" data-submit-again>Enviar otra pieza</button>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="site-footer">
+      <img src="/assets/logo.svg" alt="Jero Jones" width="123" height="25" />
+    </footer>
+
+    <script type="module" src="/src/main.js"></script>
+  </body>
+</html>
