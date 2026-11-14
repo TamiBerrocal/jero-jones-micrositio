@@ -378,3 +378,22 @@
     gap: 40px;
   }
 }
+
+/* The microsite nav has only the logo and "Escuchá": keep both on one row on small phones */
+@media (max-width: 900px) {
+  .nav {
+    flex-wrap: nowrap;
+    gap: 12px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+
+  .nav__logo img {
+    width: 124px;
+  }
+
+  .nav__cta {
+    min-height: 44px;
+    padding: 0 18px;
+  }
+}
