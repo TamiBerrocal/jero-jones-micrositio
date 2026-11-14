@@ -1,250 +1,380 @@
-/* Header */
-.site-header {
-  display: grid;
-  place-items: center;
-  height: clamp(64px, 7vw, 100px);
-  background: var(--color-black);
-}
+/* Page layout: hero, band, intro and the three steps. Mobile first; 768px and 1024px breakpoints. */
 
-.site-header__logo img {
-  width: clamp(160px, 17vw, 245px);
-  height: auto;
-}
-
-/* Hero + rotated band */
+/* Hero: duotone crowd photo with the torn "Cerrá" and the pink "el circuito" block */
 .hero {
   position: relative;
-  z-index: 1;
-  height: clamp(260px, 32.7vw, 471px);
-}
-
-.hero__image {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  object-position: center bottom;
-}
-
-.franja {
-  --franja-height: clamp(44px, 4.9vw, 70px);
-
-  position: absolute;
-  left: -2%;
-  right: -2%;
-  bottom: calc(var(--franja-height) / -2);
-  height: var(--franja-height);
   display: flex;
+  align-items: flex-end;
+  min-height: 560px;
+}
+
+.hero__photo {
+  position: absolute;
+  inset: 0;
+  --duo-light: var(--pink);
+  --duo-dark: var(--night);
+}
+
+.hero__photo img {
+  object-position: 50% 32%;
+}
+
+.hero__fade {
+  position: absolute;
+  inset: auto 0 0;
+  height: 60%;
+  background: linear-gradient(180deg, rgb(11 11 11 / 0) 0%, rgb(11 11 11 / 0.88) 100%);
+  pointer-events: none;
+}
+
+.hero__inner {
+  position: relative;
+  width: 100%;
+  max-width: var(--max);
+  margin: 0 auto;
+  padding: 0 var(--gutter) 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 14px;
+}
+
+.hero__kicker {
+  margin: 0;
+  padding: 6px 10px;
+  background: var(--black);
+  color: var(--lavender);
+  font-size: 12px;
+}
+
+.hero__title {
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  line-height: 0.86;
+}
+
+.hero__tear {
+  font-size: clamp(96px, 15vw, 216px);
+  color: var(--white);
+}
+
+.hero__block {
+  margin-top: 6px;
+  font-size: clamp(56px, 9vw, 132px);
+  background: var(--pink);
+  color: var(--black);
+  transform: rotate(-1.5deg);
+}
+
+.hero__lead {
+  margin: 4px 0 0;
+  max-width: 520px;
+  font-size: clamp(17px, 1.6vw, 20px);
+  line-height: 1.45;
+  color: var(--white);
+}
+
+.hero__actions {
+  display: flex;
+  flex-wrap: wrap;
   align-items: center;
+  gap: 16px;
+  margin-top: 6px;
+  align-self: stretch;
+}
+
+.hero__actions .btn {
+  flex: 1 1 auto;
+}
+
+@media (min-width: 768px) {
+  .hero {
+    min-height: 680px;
+  }
+
+  .hero__inner {
+    padding-bottom: 72px;
+    gap: 20px;
+  }
+
+  .hero__kicker {
+    padding: 8px 12px;
+    font-size: 14px;
+  }
+
+  .hero__actions {
+    align-self: flex-start;
+  }
+
+  .hero__actions .btn {
+    flex: none;
+  }
+}
+
+/* Rotated band: "Cerrá el circuito", always (never "Circuito cerrado") */
+.band {
+  position: relative;
+  z-index: 1;
+  padding: 18px 0;
   overflow: hidden;
-  background: var(--color-black);
+}
+
+.band__strip {
+  margin: 0 -40px;
+  padding: 10px 0;
+  background: var(--lavender);
+  color: var(--indigo);
+  font-size: clamp(20px, 2.4vw, 34px);
+  white-space: nowrap;
   transform: rotate(-2deg);
 }
 
-.franja__track {
+.band__track {
   display: flex;
   width: max-content;
-  animation: franja-scroll 40s linear infinite;
+  animation: band-scroll 40s linear infinite;
 }
 
-.franja__text {
-  display: flex;
-  font-size: var(--fs-franja);
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--color-gray);
-  white-space: nowrap;
+.band__track span {
+  padding-right: 0.6em;
 }
 
-.franja__text span::after {
-  content: "|";
-  padding-inline: 2.5em;
-}
-
-@keyframes franja-scroll {
+@keyframes band-scroll {
   to {
     transform: translateX(-50%);
   }
 }
 
-/* Participá */
-.participa {
-  padding-block: clamp(80px, 8.3vw, 120px) clamp(64px, 7vw, 100px);
-  color: var(--color-white);
-  background: var(--color-red);
+@media (min-width: 768px) {
+  .band {
+    padding: 28px 0;
+  }
+
+  .band__strip {
+    padding: 14px 0;
+  }
 }
 
-.participa__title {
-  margin-bottom: clamp(20px, 2vw, 28px);
-  font-size: var(--fs-display);
+/* Intro */
+.intro__grid {
+  display: grid;
+  gap: 24px 80px;
+  align-items: start;
+}
+
+.intro__head {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.intro__title {
+  margin: 0;
+  font-size: clamp(72px, 9vw, 136px);
+  line-height: 0.86;
+  color: var(--white);
+}
+
+.intro__row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 16px;
+  align-self: stretch;
+}
+
+.intro__block {
+  font-size: clamp(30px, 3.6vw, 52px);
+  background: var(--plum);
+  color: var(--white);
+  transform: rotate(-1deg);
+}
+
+.intro__copy {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 620px;
+  font-size: clamp(17px, 1.4vw, 20px);
+  line-height: 1.55;
+}
+
+.intro__copy p {
+  margin: 0;
+}
+
+.intro__claim {
+  font-size: clamp(19px, 1.8vw, 26px);
+  line-height: 1.35;
   font-weight: 700;
-  line-height: 1.1;
-  letter-spacing: -0.02em;
-  text-transform: uppercase;
-  color: var(--color-title);
+  color: var(--white);
 }
 
-.participa__copy {
-  max-width: 1155px;
-  font-size: var(--fs-lead);
-  line-height: 1.25;
+.intro__steps-label {
+  margin: 8px 0 0;
+  color: var(--lavender);
 }
 
-.participa__copy p + p {
-  margin-top: 1.25em;
-}
-
-.participa__sticker {
-  width: clamp(64px, 7vw, 100px);
-  height: auto;
-  margin: clamp(40px, 4.4vw, 64px) auto 0;
+@media (min-width: 1024px) {
+  .intro__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
 /* Steps */
-.steps {
-  padding-bottom: clamp(64px, 7vw, 100px);
-}
-
 .step {
+  border-top: 2px solid var(--rule);
+}
+
+.step__inner {
   position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
 }
 
-.step + .step {
-  margin-top: clamp(64px, 6.2vw, 90px);
+.step__head {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-end;
+  gap: 12px 24px;
 }
 
-.step__body {
-  width: min(100% - 2 * var(--gutter), var(--container-step));
-  margin: clamp(28px, 2.8vw, 40px) auto 0;
+.step__num {
+  font-size: clamp(56px, 6vw, 88px);
 }
 
-.step__body--wide {
-  width: min(100% - 2 * var(--gutter), var(--container-wide));
+.step__title {
+  min-width: 0;
+  margin: 0;
+  font-size: clamp(40px, 5.4vw, 80px);
+  line-height: 0.9;
+  color: var(--white);
+}
+
+.step__tag {
+  padding-bottom: 10px;
+  color: var(--lavender);
 }
 
 .step__lead {
-  font-size: var(--fs-lead);
-  line-height: 1.25;
+  margin: 0;
+  max-width: 720px;
+  font-size: clamp(17px, 1.4vw, 20px);
+  line-height: 1.55;
 }
 
-.step__lead--secondary {
-  margin-top: 0.5em;
-  font-size: var(--fs-body);
+.step__lead strong {
+  color: var(--white);
 }
 
-.step__note {
-  margin-top: 16px;
-  font-size: var(--fs-body);
+.step--upload .step__num { background: var(--pink); color: var(--black); }
+.step--editor .step__num { background: var(--lavender); color: var(--indigo); }
+.step--submit .step__num { background: var(--olive); color: var(--black); }
+
+@media (min-width: 768px) {
+  .step__inner {
+    gap: 40px;
+  }
 }
 
-.step--submit {
-  padding-bottom: clamp(64px, 7vw, 100px);
-  color: var(--color-white);
-  background: var(--color-red);
-
-  --focus-color: var(--color-white);
-}
-
-.step--submit .bar-heading {
-  margin-top: 0;
-}
-
-/* Bar heading motif: black stripe with a label block hanging from its right end */
-.bar-stripe {
-  display: block;
-  height: var(--bar-stripe);
-  background: var(--color-black);
-}
-
-.bar-stripe--short {
-  width: 29%; /* 418 / 1440 */
-  margin-bottom: clamp(16px, 2.5vw, 36px);
-}
-
-.bar-heading {
-  position: relative;
-  display: flex;
-  justify-content: flex-end;
-  width: var(--bar-width);
-}
-
-.bar-heading::before {
-  content: "";
-  position: absolute;
-  inset: 0 0 auto;
-  height: var(--bar-stripe);
-  background: var(--color-black);
-}
-
-.bar-heading__label {
-  position: relative;
-  display: flex;
+/* Step 1: copy beside the dropzone */
+.upload__grid {
+  display: grid;
+  gap: 24px 80px;
   align-items: center;
-  min-height: clamp(56px, 6.8vw, 98px);
-  padding-inline: clamp(16px, 4vw, 57px);
-  font-size: var(--fs-heading);
-  font-weight: 500;
-  line-height: 1.1;
-  text-transform: uppercase;
-  color: var(--color-gray);
-  background: var(--color-black);
 }
 
-/* Stickers */
-.sticker {
-  position: absolute;
-  z-index: 1;
-  height: auto;
-  pointer-events: none;
+.upload__copy {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-width: 520px;
 }
 
-/* On mobile the stickers sit in the free space left of the heading label */
-.sticker--cassette {
-  top: 40px;
-  left: 28px;
-  width: 34px;
-  transform: rotate(40deg);
+@media (min-width: 1024px) {
+  .upload__grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
 }
 
-.sticker--camera {
-  top: 18px;
-  left: 20px;
-  width: 60px;
-  transform: rotate(24deg);
+/* Step 2: preview first on phones, filters beside it on wide screens */
+.editor {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px 48px;
+  align-items: flex-start;
+}
+
+.editor__preview {
+  flex: 999 1 560px;
+  min-width: 0;
+}
+
+.editor__controls {
+  flex: 1 1 340px;
+  min-width: 0;
+}
+
+/* Step 3: paper sheet */
+.step--submit {
+  border-top: 0;
+  background: var(--paper);
+  color: var(--black);
+}
+
+.step--submit .step__title,
+.step--submit .step__lead strong {
+  color: var(--black);
+}
+
+.submit-grid {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 32px 48px;
+  align-items: flex-start;
+}
+
+.summary {
+  flex: 1 1 260px;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.fields {
+  flex: 999 1 520px;
+  min-width: 0;
+  margin: 0;
+  padding: 0;
+  border: 0;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr);
+  gap: 20px;
 }
 
 @media (min-width: 768px) {
-  .sticker--cassette {
-    top: 109px;
-    left: 4.7%;
-    width: clamp(56px, 5.6vw, 81px);
+  .fields {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
-  .sticker--camera {
-    top: 143px;
-    right: -1.4%;
-    left: auto;
-    width: clamp(80px, 8.7vw, 125px);
+  .field--full {
+    grid-column: 1 / -1;
   }
 }
 
-@media (min-width: 768px) and (max-width: 1279px) {
-  /* Keep stickers from covering the copy on narrower screens */
-  .step--upload .step__body,
-  .step--editor .step__lead {
-    padding-inline: clamp(48px, 7vw, 96px);
+.submit-form {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+@media (min-width: 768px) {
+  .submit-form {
+    gap: 40px;
   }
-}
-
-/* Footer */
-.site-footer {
-  display: grid;
-  place-items: center;
-  padding-block: 32px;
-  background: var(--color-black);
-}
-
-.site-footer img {
-  width: 123px;
-  height: auto;
 }

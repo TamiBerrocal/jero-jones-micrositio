@@ -1,0 +1,26 @@
+{
+  "detector": {
+    "ignoreRules": [],
+    "ignoreFiles": [],
+    "ignoreValues": [
+      {
+        "rule": "broken-image",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-11-14T03:00:14.565Z",
+        "reason": "Claude: the file-card thumbnail <img> is hidden and gets its src from uploader.js when a file is chosen"
+      },
+      {
+        "rule": "flat-type-hierarchy",
+        "value": "*",
+        "files": [
+          "index.html"
+        ],
+        "createdAt": "2026-11-14T03:06:09.405Z",
+        "reason": "Claude: sizes live in CSS clamp() (hero 96-216px, step titles 40-80px vs 17-20px body); the static scan only sees the two inline PDF label sizes"
+      }
+    ]
+  }
+}

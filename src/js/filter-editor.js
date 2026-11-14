@@ -1,12 +1,12 @@
 import { DEFAULT_FILTERS, getImageSource, isEditable, isFiltered } from './store.js';
-import { FILTERS, formatFilterValue, toCssFilter } from './filters.js';
+import { FILTERS, fillRange, formatFilterValue, toCssFilter } from './filters.js';
 
 function createFilterControl(config, onChange) {
   const id = `filter-${config.key}`;
   const item = document.createElement('li');
   item.className = 'filter';
   item.innerHTML = `
-    <label class="filter__label" for="${id}">${config.label}: <output for="${id}"></output></label>
+    <label class="filter__label" for="${id}"><span>${config.label}</span><output for="${id}"></output></label>
     <input class="range" id="${id}" type="range" min="${config.min}" max="${config.max}" step="1" />
   `;
 
@@ -24,6 +24,7 @@ export function initFilterEditor(root, store) {
   const sourceLabel = root.querySelector('[data-preview-source]');
   const uploadLink = root.querySelector('[data-preview-upload-link]');
   const notice = root.querySelector('[data-preview-notice]');
+  const count = root.querySelector('[data-filter-count]');
 
   const updateFilter = (key, value) => {
     store.setState({ filters: { ...store.getState().filters, [key]: value } });
@@ -52,7 +53,13 @@ export function initFilterEditor(root, store) {
       output.textContent = formatted;
       input.setAttribute('aria-valuetext', formatted);
       input.disabled = !editable;
+      const fill = fillRange(config, value);
+      input.style.setProperty('--a', `${fill.from}%`);
+      input.style.setProperty('--b', `${fill.to}%`);
     });
+
+    const changed = controls.filter(({ config }) => state.filters[config.key] !== 0).length;
+    count.textContent = changed === 0 ? 'Sin cambios' : `${changed} ${changed === 1 ? 'cambio' : 'cambios'}`;
 
     resetButton.disabled = !editable || !isFiltered(state);
 

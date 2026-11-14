@@ -1,0 +1,372 @@
+/* Nav, buttons, bracket links and footer copied from jero-jones-web (src/styles/components.css). */
+/* Navigation */
+.nav {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px 32px;
+  padding: 16px var(--gutter);
+  background: var(--black);
+}
+
+.nav__logo {
+  display: block;
+  margin-right: auto;
+}
+
+.nav__logo img {
+  display: block;
+  width: 150px;
+  height: auto;
+}
+
+.nav__links {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 4px 28px;
+}
+
+/* Hamburger (only shown on small screens once nav.js has run) */
+.nav__toggle {
+  position: relative;
+  display: none;
+  width: 48px;
+  height: 48px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: var(--paper);
+  cursor: pointer;
+}
+
+.nav__burger,
+.nav__burger::before,
+.nav__burger::after {
+  position: absolute;
+  left: 10px;
+  width: 28px;
+  height: 4px;
+  background: currentColor;
+  transition: transform 0.25s cubic-bezier(0.3, 0.7, 0.2, 1), opacity 0.2s;
+}
+
+.nav__burger {
+  top: 22px;
+}
+
+.nav__burger::before,
+.nav__burger::after {
+  content: '';
+  left: 0;
+}
+
+.nav__burger::before {
+  top: -9px;
+}
+
+.nav__burger::after {
+  top: 9px;
+  width: 20px;
+}
+
+.nav.is-open .nav__burger {
+  background: transparent;
+}
+
+.nav.is-open .nav__burger::before {
+  transform: translateY(9px) rotate(45deg);
+  background: var(--pink);
+}
+
+.nav.is-open .nav__burger::after {
+  width: 28px;
+  transform: translateY(-9px) rotate(-45deg);
+  background: var(--pink);
+}
+
+@media (max-width: 900px) {
+  .nav.has-js {
+    flex-wrap: nowrap;
+    gap: 12px;
+    padding-top: 12px;
+    padding-bottom: 12px;
+  }
+
+  .nav.has-js .nav__logo img {
+    width: 124px;
+  }
+
+  .nav.has-js .nav__toggle {
+    display: block;
+    margin-right: -10px;
+  }
+
+  .nav.has-js .nav__cta {
+    min-height: 44px;
+    padding: 0 18px;
+  }
+
+  /* Full-screen menu. It sits behind the bar (negative z inside the nav's stacking context), so the
+     logo, the CTA and the close button stay on top. */
+  .nav.has-js .nav__links {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: flex-start;
+    justify-content: center;
+    gap: clamp(8px, 2.5svh, 20px);
+    padding: 96px var(--gutter) 48px;
+    background: var(--black);
+    overflow-y: auto;
+    visibility: hidden;
+    opacity: 0;
+  }
+
+  .nav.has-js.is-open .nav__links {
+    visibility: visible;
+    opacity: 1;
+  }
+
+  /* Fades are switched on one frame after load so the menu doesn't flash while nav.js takes over */
+  .nav.is-ready .nav__links {
+    transition: opacity 0.2s ease, visibility 0s linear 0.2s;
+  }
+
+  .nav.is-ready.is-open .nav__links {
+    transition: opacity 0.2s ease;
+  }
+
+  .nav.has-js .navlink {
+    font-family: var(--font-cond);
+    font-stretch: condensed;
+    font-weight: 900;
+    font-size: clamp(44px, 13vw, 76px);
+    line-height: 0.95;
+    letter-spacing: 0;
+    padding: 8px 0 14px;
+  }
+
+  .nav.has-js .navlink.pen::after {
+    height: 10px;
+    bottom: 4px;
+  }
+}
+
+html.menu-open {
+  overflow: hidden;
+}
+
+.navlink {
+  color: var(--paper);
+  text-decoration: none;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 12px 4px 14px;
+}
+
+.navlink:hover,
+.navlink:focus-visible {
+  color: var(--pink);
+}
+
+/* Pencil underline: a rough pink stroke that draws in on hover and marks the current page */
+.pen {
+  position: relative;
+  text-decoration: none;
+}
+
+.pen::after {
+  content: '';
+  position: absolute;
+  left: 2px;
+  right: 0;
+  bottom: 3px;
+  height: 6px;
+  pointer-events: none;
+  background: var(--pink);
+  filter: url(#jjpencil);
+  clip-path: polygon(0 20%, 2% 6%, 12% 0, 30% 8%, 50% 4%, 68% 16%, 84% 32%, 94% 44%, 100% 50%, 94% 58%, 84% 72%, 66% 88%, 48% 96%, 28% 92%, 10% 100%, 2% 94%, 0 80%);
+  transform-origin: left center;
+  transform: scaleX(0) rotate(-0.4deg);
+  transition: transform 0.32s cubic-bezier(0.3, 0.7, 0.2, 1);
+}
+
+.pen:hover::after,
+.pen:focus-visible::after,
+.pen[aria-current='page']::after {
+  transform: scaleX(1) rotate(-0.4deg);
+}
+
+/* Buttons: flat color block with an offset hard shadow */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  min-height: 48px;
+  padding: 0 24px;
+  border: 0;
+  background: var(--btn-bg, var(--pink));
+  color: var(--btn-ink, var(--black));
+  box-shadow: var(--btn-offset, 4px) var(--btn-offset, 4px) 0 var(--btn-shadow, var(--paper));
+  font-family: inherit;
+  font-weight: 700;
+  font-size: 15px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+  transition: transform 0.15s;
+}
+
+.btn:hover {
+  color: var(--btn-ink, var(--black));
+  transform: translate(-3px, -3px);
+}
+
+.btn svg {
+  flex: none;
+}
+
+.btn--pink { --btn-bg: var(--pink); --btn-ink: var(--black); }
+.btn--black { --btn-bg: var(--black); --btn-ink: var(--paper); }
+.btn--indigo { --btn-bg: var(--indigo); --btn-ink: var(--paper); --btn-shadow: var(--black); }
+
+.btn-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+/* Bracket link: corner brackets that close into a box on hover */
+.brk {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 36px;
+  padding: 0 16px;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  font: inherit;
+  font-weight: 700;
+  font-size: 13px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.brk::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background:
+    linear-gradient(currentColor, currentColor) left top / 3px 100% no-repeat,
+    linear-gradient(currentColor, currentColor) right top / 3px 100% no-repeat,
+    linear-gradient(currentColor, currentColor) left top / 10px 3px no-repeat,
+    linear-gradient(currentColor, currentColor) left bottom / 10px 3px no-repeat,
+    linear-gradient(currentColor, currentColor) right top / 10px 3px no-repeat,
+    linear-gradient(currentColor, currentColor) right bottom / 10px 3px no-repeat;
+  transition: background-size 0.28s cubic-bezier(0.3, 0.7, 0.2, 1);
+}
+
+.brk:hover,
+.brk:focus-visible {
+  color: inherit;
+}
+
+.brk:hover::before,
+.brk:focus-visible::before {
+  background-size: 3px 100%, 3px 100%, 50% 3px, 50% 3px, 50% 3px, 50% 3px;
+}
+
+/* Footer */
+.footer {
+  background: var(--black);
+  padding: 48px var(--gutter) 40px;
+}
+
+.footer__inner {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+  gap: 28px;
+}
+
+.footer__logo {
+  width: min(100%, 360px);
+  height: auto;
+}
+
+.footer__links {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 24px;
+}
+
+.footer__links a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 10px 0;
+  font-weight: 700;
+  font-size: 15px;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+.footer__links svg {
+  flex: none;
+}
+
+.footer__legal {
+  margin: 28px auto 0;
+  font-size: 13px;
+  color: #fff;
+}
+
+/* Microsite tweak (from the canvas review): on phones the three footer links share one row. */
+@media (max-width: 600px) {
+  .footer__logo {
+    width: 100%;
+  }
+
+  .footer__links {
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    gap: 12px;
+    width: 100%;
+  }
+
+  .footer__links a {
+    gap: 6px;
+    padding: 12px 0;
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 360px) {
+  .footer__links {
+    gap: 8px;
+  }
+
+  .footer__links a {
+    font-size: 12px;
+    letter-spacing: 0.02em;
+  }
+}

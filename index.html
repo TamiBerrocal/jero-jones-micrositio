@@ -8,288 +8,253 @@
       name="description"
       content="Diseñá la tapa del nuevo disco de Jero Jones. Subí tu pieza o editá una foto y mandala."
     />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap"
-      rel="stylesheet"
-    />
+    <meta name="theme-color" content="#0B0B0B" />
+    <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   </head>
   <body>
-    <header class="site-header">
-      <a href="./" class="site-header__logo">
-        <img src="/assets/logo.svg" alt="Jero Jones" width="245" height="50" />
-      </a>
-    </header>
+    <a class="skip-link" href="#contenido">Saltar al contenido</a>
+    <svg class="svg-defs" aria-hidden="true">
+      <filter id="jjpencil" x="-3%" y="-400%" width="106%" height="900%" color-interpolation-filters="sRGB"><feTurbulence type="fractalNoise" baseFrequency="0.3 0.12" numOctaves="2" seed="4" result="n" /><feDisplacementMap in="SourceGraphic" in2="n" scale="4" xChannelSelector="R" yChannelSelector="G" result="d" /><feTurbulence type="fractalNoise" baseFrequency="1.1" numOctaves="1" seed="9" result="g" /><feColorMatrix in="g" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 -2.6 0 0 0 2" result="ga" /><feComposite in="d" in2="ga" operator="in" /></filter>
+      <filter id="jjg"><feTurbulence type="fractalNoise" baseFrequency="0.85" numOctaves="2" stitchTiles="stitch" /><feColorMatrix type="saturate" values="0" /></filter>
+    </svg>
 
-    <main>
-      <section class="hero" aria-label="Cerrá el circuito">
-        <img class="hero__image" src="/assets/hero.png" alt="" />
-        <div class="franja" aria-hidden="true">
-          <div class="franja__track">
-            <p class="franja__text">
-              <span>Circuito cerrado</span><span>Cerrá el circuito</span><span>Cerrá el circuito</span
-              ><span>Cerrá el circuito</span><span>Cerrá el circuito</span><span>Circuito cerrado</span>
-            </p>
-            <p class="franja__text">
-              <span>Circuito cerrado</span><span>Cerrá el circuito</span><span>Cerrá el circuito</span
-              ><span>Cerrá el circuito</span><span>Cerrá el circuito</span><span>Circuito cerrado</span>
-            </p>
+    <!-- Same nav as jero-jones-web, with this microsite as the current section -->
+    <nav class="nav" aria-label="Principal">
+      <a class="nav__logo" href="https://tamiberrocal.github.io/jero-jones-web/" aria-label="Jero Jones, inicio"
+        ><img src="/assets/logo-nav.svg" alt="jero jones" width="150" height="31"
+      /></a>
+      <div class="nav__links" id="nav-menu">
+        <a class="navlink pen" href="https://tamiberrocal.github.io/jero-jones-web/">Inicio</a>
+        <a class="navlink pen" href="https://tamiberrocal.github.io/jero-jones-web/quien.html">¿Quién es Jero Jones?</a>
+        <a class="navlink pen" href="https://tamiberrocal.github.io/jero-jones-web/dance.html">Dance, dance, dance</a>
+        <a class="navlink pen" href="./" aria-current="page">Cerrá el circuito</a>
+      </div>
+      <a class="btn btn--pink nav__cta" href="https://open.spotify.com/artist/4Tk06wQxbCfPYcxqxGE8yJ" target="_blank" rel="noopener" aria-label="Escuchá a Jero Jones en Spotify"
+        ><svg aria-hidden="true" viewBox="0 0 24 24" width="1.5em" height="1.5em"><circle cx="12" cy="12" r="12" fill="currentColor" /><g fill="none" stroke="#EC8797" stroke-linecap="round"><path d="M5.2 8.6c4.4-1.3 9.4-.9 13.6 1.4" stroke-width="2.2" /><path d="M6 12.4c3.7-1 7.7-.7 11.1 1.2" stroke-width="1.9" /><path d="M6.9 15.9c3-.8 6-.5 8.6.9" stroke-width="1.6" /></g></svg>Escuchá</a
+      >
+      <button class="nav__toggle" type="button" aria-expanded="false" aria-controls="nav-menu" hidden data-nav-toggle>
+        <span class="visually-hidden" data-nav-label>Abrir menú</span><span class="nav__burger" aria-hidden="true"></span>
+      </button>
+    </nav>
+
+    <main id="contenido">
+      <header class="hero" aria-labelledby="hero-title">
+        <div class="hero__photo duo" aria-hidden="true">
+          <img src="/assets/hero-crowd.jpg" alt="" fetchpriority="high" />
+          <div class="shade"></div>
+        </div>
+        <svg class="grain" aria-hidden="true"><rect width="100%" height="100%" filter="url(#jjg)" /></svg>
+        <div class="hero__fade" aria-hidden="true"></div>
+        <div class="hero__inner">
+          <p class="hero__kicker kick">Convocatoria abierta · Tapa del nuevo disco</p>
+          <h1 class="hero__title cond" id="hero-title">
+            <span class="hero__tear tear"
+              ><span class="tear-top">Cerrá</span><span class="tear-bot" aria-hidden="true">Cerrá</span></span
+            >
+            <span class="hero__block block">el circuito</span>
+          </h1>
+          <p class="hero__lead">Diseñá la tapa de mi nuevo disco. Subí una pieza o armala acá con mi foto.</p>
+          <div class="hero__actions">
+            <a class="btn btn--pink" href="#subi">Empezá a crear</a>
+            <a class="brk" href="#participa">¿Cómo funciona?</a>
           </div>
         </div>
-      </section>
+      </header>
 
-      <section class="participa" aria-labelledby="participa-title">
-        <div class="container">
-          <h1 class="participa__title" id="participa-title">Participá</h1>
-          <div class="participa__copy">
-            <p>Esto no es un concurso de diseño, es parte del disco.</p>
-            <p>
-              Hay pistas escondidas en este sitio. Seguilas, interpretalas y mostrános qué ves.
-              Diseñá la tapa de mi nuevo disco a partir de ellas. Podés subir una pieza que ya
-              hayas creado o empezar a diseñarla acá.
-            </p>
-            <p><strong>Elegí cómo te metés.<br />Empezá a crear.</strong></p>
+      <div class="band" aria-hidden="true">
+        <div class="band__strip cond">
+          <div class="band__track">
+            <span>Cerrá el circuito · Cerrá el circuito · Cerrá el circuito · Cerrá el circuito ·</span>
+            <span>Cerrá el circuito · Cerrá el circuito · Cerrá el circuito · Cerrá el circuito ·</span>
           </div>
-          <img
-            class="participa__sticker"
-            src="/assets/sticker-disco-ball.png"
-            alt=""
-            width="100"
-            height="100"
-          />
         </div>
-      </section>
-
-      <div class="steps">
-        <!-- Step 1: upload a finished piece or a starting photo -->
-        <section class="step step--upload" id="subi" aria-labelledby="subi-title">
-          <span class="bar-stripe bar-stripe--short" aria-hidden="true"></span>
-          <div class="bar-heading">
-            <h2 class="bar-heading__label" id="subi-title">Subí tu pieza</h2>
-          </div>
-          <img
-            class="sticker sticker--cassette"
-            src="/assets/sticker-cassette.png"
-            alt=""
-            width="81"
-            height="105"
-          />
-
-          <div class="step__body">
-            <p class="step__lead">
-              ¿Ya tenés algo hecho? Una foto, un collage, un dibujo –lo que sientas.
-              <strong>Mandalo.</strong>
-            </p>
-            <p class="step__lead step__lead--secondary">
-              Si subís una imagen, la vas a poder editar abajo. Si no subís nada, podés jugar con
-              nuestra foto.
-            </p>
-
-            <input
-              class="visually-hidden"
-              type="file"
-              id="upload-input"
-              accept=".jpg,.jpeg,.png,.pdf,image/jpeg,image/png,application/pdf"
-              data-upload-input
-              tabindex="-1"
-            />
-
-            <button type="button" class="dropzone" data-dropzone aria-describedby="upload-formats">
-              <img src="/assets/icon-image.svg" alt="" width="47" height="42" />
-              <span class="dropzone__text only-pointer"
-                >Arrastrá tu archivo acá o hacé clic para elegirlo</span
-              >
-              <span class="dropzone__text only-touch">Tocá para elegir tu archivo</span>
-            </button>
-
-            <div class="file-card" data-file-card hidden>
-              <div class="file-card__preview">
-                <img class="file-card__thumb" data-file-thumb alt="" hidden />
-                <svg
-                  class="file-card__pdf"
-                  data-file-pdf
-                  viewBox="0 0 48 60"
-                  width="48"
-                  height="60"
-                  aria-hidden="true"
-                  hidden
-                >
-                  <path d="M1 1h32l14 14v44H1z" fill="none" stroke="currentColor" stroke-width="2" />
-                  <path d="M33 1v14h14" fill="none" stroke="currentColor" stroke-width="2" />
-                  <text x="24" y="44" text-anchor="middle" font-size="12" font-weight="700" fill="currentColor">PDF</text>
-                </svg>
-              </div>
-              <div class="file-card__info">
-                <p class="file-card__name" data-file-name></p>
-                <p class="file-card__meta" data-file-meta></p>
-                <p class="file-card__note" data-file-note></p>
-              </div>
-              <div class="file-card__actions">
-                <button type="button" class="btn btn--outline" data-file-replace>Cambiar archivo</button>
-                <button type="button" class="btn btn--text" data-file-remove>Quitar</button>
-              </div>
-            </div>
-
-            <p class="step__note" id="upload-formats">Formatos: JPG, PNG, PDF · hasta 10 MB</p>
-            <p class="status-message" data-upload-status role="status" aria-live="polite"></p>
-          </div>
-        </section>
-
-        <!-- Step 2: optional filter editor -->
-        <section class="step step--editor" id="disena" aria-labelledby="disena-title">
-          <div class="bar-heading">
-            <h2 class="bar-heading__label" id="disena-title">Diseñá acá</h2>
-          </div>
-          <img
-            class="sticker sticker--camera"
-            src="/assets/sticker-camera.png"
-            alt=""
-            width="125"
-            height="86"
-          />
-
-          <div class="step__body step__body--wide">
-            <p class="step__lead">
-              ¿Arrancás de cero? Jugá con nuestra foto –o con la tuya, si la subiste– usando las
-              pistas que hayas encontrado. No hace falta saber diseñar, sólo
-              <strong>tener ganas</strong>.
-            </p>
-
-            <div class="editor">
-              <div class="panel editor__controls">
-                <div class="panel__header">
-                  <h3 class="panel__title">Filtros</h3>
-                  <button type="button" class="btn btn--red" data-filter-reset disabled>
-                    Volver al original
-                  </button>
-                </div>
-                <ul class="filter-list" data-filter-list></ul>
-              </div>
-
-              <div class="panel editor__preview">
-                <div class="panel__header">
-                  <h3 class="panel__title">Vista previa</h3>
-                  <p class="editor__source">
-                    <span data-preview-source>Foto de ejemplo</span>
-                    <a href="#subi" data-preview-upload-link>Subí la tuya</a>
-                  </p>
-                </div>
-                <div class="editor__frame">
-                  <img
-                    class="editor__image"
-                    data-preview-image
-                    src="/assets/default-photo.png"
-                    alt="Vista previa de la imagen con los filtros aplicados"
-                  />
-                  <p class="editor__notice" data-preview-notice hidden>
-                    Los PDF se envían tal cual, sin filtros. Si querés editar, subí un JPG o PNG.
-                  </p>
-                </div>
-              </div>
-            </div>
-          </div>
-        </section>
       </div>
 
-      <!-- Step 3: author details and submission -->
-      <section class="step step--submit" id="envia" aria-labelledby="envia-title">
-        <div class="bar-heading">
-          <h2 class="bar-heading__label" id="envia-title">Enviá tu pieza</h2>
+      <section class="intro section" id="participa" aria-labelledby="participa-title">
+        <div class="intro__grid wrap">
+          <div class="intro__head">
+            <h2 class="intro__title cond" id="participa-title">Participá</h2>
+            <div class="intro__row">
+              <span class="intro__block block cond">No es un concurso</span>
+              <div class="clue-slot clue-slot--side" data-clue-slot data-clue-group="intro" data-clue-media="all"></div>
+            </div>
+            <div class="clue-slot clue-slot--box" data-clue-slot data-clue-group="intro" data-clue-media="desktop"></div>
+          </div>
+          <div class="intro__copy">
+            <p class="intro__claim">Esto no es un concurso de diseño, es parte del disco.</p>
+            <p>
+              <span class="mark" style="background: var(--lavender)">Hay pistas escondidas en este sitio.</span>
+              Seguilas, interpretalas y mostrame qué ves. Diseñá la tapa de mi nuevo disco a partir de ellas:
+              podés subir una pieza que ya hayas hecho o empezar a diseñarla acá.
+            </p>
+            <p class="intro__steps-label kick">Elegí cómo te metés</p>
+            <ol class="steps-index">
+              <li><a href="#subi"><span class="steps-index__num cond">01</span><span class="steps-index__label">Subí</span></a></li>
+              <li><a href="#disena"><span class="steps-index__num cond">02</span><span class="steps-index__label">Diseñá</span></a></li>
+              <li><a href="#envia"><span class="steps-index__num cond">03</span><span class="steps-index__label">Enviá</span></a></li>
+            </ol>
+          </div>
         </div>
+      </section>
 
-        <div class="step__body step__body--wide">
+      <!-- Step 1: upload a finished piece or a starting photo -->
+      <section class="step step--upload section" id="subi" aria-labelledby="subi-title">
+        <div class="step__inner wrap">
+          <div class="step__head">
+            <span class="step__num block cond" aria-hidden="true">01</span>
+            <h2 class="step__title cond" id="subi-title">Subí tu pieza</h2>
+            <span class="step__tag kick">Opcional</span>
+            <div class="clue-slot clue-slot--head" data-clue-slot data-clue-group="upload" data-clue-media="all"></div>
+          </div>
+
+          <div class="upload__grid">
+            <div class="upload__copy">
+              <p class="step__lead">
+                ¿Ya tenés algo hecho? Una foto, un collage, un dibujo... lo que sientas. <strong>Mandalo.</strong>
+              </p>
+              <p class="step__lead">
+                Si subís una imagen, la vas a poder editar abajo. Si no subís nada, podés jugar con mi foto.
+              </p>
+              <div class="clue-slot clue-slot--box" data-clue-slot data-clue-group="upload" data-clue-media="desktop"></div>
+            </div>
+
+            <div class="upload__drop">
+              <input
+                class="visually-hidden"
+                type="file"
+                id="upload-input"
+                accept=".jpg,.jpeg,.png,.pdf,image/jpeg,image/png,application/pdf"
+                data-upload-input
+                tabindex="-1"
+              />
+
+              <button type="button" class="dropzone" data-dropzone aria-describedby="upload-formats">
+                <svg aria-hidden="true" width="48" height="48" viewBox="0 0 24 24" fill="none" stroke="#EC8797" stroke-width="2" stroke-linecap="square"><path d="M12 16V4" /><path d="M7 9l5-5 5 5" /><path d="M4 15v5h16v-5" /></svg>
+                <span class="dropzone__title cond only-pointer">Arrastrá tu archivo acá</span>
+                <span class="dropzone__hint only-pointer">o <strong>hacé clic para elegirlo</strong></span>
+                <span class="dropzone__title cond only-touch">Tocá para elegir</span>
+                <span class="dropzone__hint only-touch">tu archivo</span>
+              </button>
+
+              <div class="file-card" data-file-card hidden>
+                <div class="file-card__preview">
+                  <img class="file-card__thumb" data-file-thumb alt="" hidden />
+                  <span class="cond" style="font-size: 36px" data-file-pdf hidden>PDF</span>
+                </div>
+                <div class="file-card__info">
+                  <p class="file-card__name" data-file-name></p>
+                  <p class="file-card__meta" data-file-meta></p>
+                  <p class="file-card__note" data-file-note></p>
+                </div>
+                <div class="file-card__actions">
+                  <button type="button" class="btn btn--ghost" data-file-replace>Cambiar archivo</button>
+                  <button type="button" class="link-btn" data-file-remove>Quitar</button>
+                </div>
+              </div>
+
+              <p class="upload__note" id="upload-formats">JPG, PNG o PDF · hasta 10 MB</p>
+              <p class="status-message" data-upload-status role="status" aria-live="polite"></p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Step 2: optional filter editor -->
+      <section class="step step--editor section" id="disena" aria-labelledby="disena-title">
+        <div class="step__inner wrap">
+          <div class="step__head">
+            <span class="step__num block cond" aria-hidden="true">02</span>
+            <h2 class="step__title cond" id="disena-title">Diseñá acá</h2>
+            <div class="clue-slot clue-slot--head clue-slot--mobile" data-clue-slot data-clue-group="editor" data-clue-media="mobile"></div>
+          </div>
+          <p class="step__lead">
+            ¿Arrancás de cero? Jugá con mi foto –o con la tuya, si la subiste– usando las pistas que hayas
+            encontrado. No hace falta saber diseñar, sólo <span class="mark" style="background: var(--pink)">tener ganas</span>.
+          </p>
+
+          <div class="editor">
+            <figure class="editor__preview" style="margin: 0">
+              <div class="editor__frame">
+                <img
+                  class="editor__image"
+                  data-preview-image
+                  src="/assets/default-photo.png"
+                  alt="Vista previa de la imagen con los filtros aplicados"
+                />
+                <p class="editor__notice" data-preview-notice hidden>
+                  Los PDF se envían tal cual, sin filtros. Si querés editar, subí un JPG o PNG.
+                </p>
+              </div>
+              <figcaption class="editor__caption">
+                <span class="kick"><span data-preview-source>Foto de ejemplo</span> · <span data-filter-count>Sin cambios</span></span>
+                <a href="#subi" data-preview-upload-link>Subí la tuya</a>
+              </figcaption>
+            </figure>
+
+            <div class="editor__controls panel">
+              <div class="panel__head">
+                <h3 class="panel__title cond">Filtros</h3>
+              </div>
+              <ul class="filter-list" data-filter-list></ul>
+              <div class="editor__reset">
+                <span class="editor__reset-hint kick">Tus cambios</span>
+                <button type="button" class="btn btn--outline" data-filter-reset disabled>Volver al original</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Step 3: author details and submission -->
+      <section class="step step--submit section" id="envia" aria-labelledby="envia-title">
+        <div class="step__inner wrap">
+          <div class="step__head">
+            <span class="step__num block cond" aria-hidden="true">03</span>
+            <h2 class="step__title cond" id="envia-title">Enviá tu pieza</h2>
+            <div class="clue-slot clue-slot--head clue-slot--desktop" data-clue-slot data-clue-group="submit" data-clue-media="desktop"></div>
+          </div>
+
           <div class="submit-form" data-submit-form-wrapper>
-            <p class="step__lead">Contanos quién sos y mandá tu tapa.</p>
             <p class="lock-hint" data-lock-hint>
-              Para enviar, subí un archivo o editá la foto de arriba.
+              <svg aria-hidden="true" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#EC8797" stroke-width="2.4"><rect x="4" y="10" width="16" height="11" /><path d="M8 10V7a4 4 0 0 1 8 0v3" /></svg>
+              Para enviar, subí un archivo o mové algún filtro de arriba.
             </p>
 
             <form class="submit-grid" data-submit-form novalidate>
               <figure class="summary">
                 <div class="summary__frame">
                   <img class="summary__image" data-summary-image src="/assets/default-photo.png" alt="" />
-                  <svg
-                    class="summary__pdf"
-                    data-summary-pdf
-                    viewBox="0 0 48 60"
-                    width="64"
-                    height="80"
-                    aria-hidden="true"
-                    hidden
-                  >
-                    <path d="M1 1h32l14 14v44H1z" fill="none" stroke="currentColor" stroke-width="2" />
-                    <path d="M33 1v14h14" fill="none" stroke="currentColor" stroke-width="2" />
-                    <text x="24" y="44" text-anchor="middle" font-size="12" font-weight="700" fill="currentColor">PDF</text>
-                  </svg>
+                  <span class="cond" style="font-size: 56px" data-summary-pdf hidden>PDF</span>
                 </div>
-                <figcaption class="summary__caption" data-summary-caption>
-                  Todavía no hay nada para enviar.
-                </figcaption>
+                <figcaption class="summary__caption" data-summary-caption>Todavía no hay nada para enviar.</figcaption>
+                <div class="clue-slot clue-slot--box" data-clue-slot data-clue-group="submit" data-clue-media="desktop"></div>
               </figure>
 
               <fieldset class="fields" data-submit-fieldset disabled>
                 <legend class="visually-hidden">Tus datos</legend>
+                <p class="fields__intro field--full">Contame quién sos y mandá tu tapa.</p>
 
                 <div class="field">
                   <label class="field__label" for="first-name">Nombre</label>
-                  <input
-                    class="field__input"
-                    id="first-name"
-                    name="nombre"
-                    type="text"
-                    autocomplete="given-name"
-                    required
-                    maxlength="80"
-                    aria-describedby="first-name-error"
-                  />
+                  <input class="field__input" id="first-name" name="nombre" type="text" autocomplete="given-name" required maxlength="80" aria-describedby="first-name-error" />
                   <p class="field__error" id="first-name-error" hidden></p>
                 </div>
 
                 <div class="field">
                   <label class="field__label" for="last-name">Apellido</label>
-                  <input
-                    class="field__input"
-                    id="last-name"
-                    name="apellido"
-                    type="text"
-                    autocomplete="family-name"
-                    required
-                    maxlength="80"
-                    aria-describedby="last-name-error"
-                  />
+                  <input class="field__input" id="last-name" name="apellido" type="text" autocomplete="family-name" required maxlength="80" aria-describedby="last-name-error" />
                   <p class="field__error" id="last-name-error" hidden></p>
                 </div>
 
                 <div class="field field--full">
                   <label class="field__label" for="email">Mail</label>
-                  <input
-                    class="field__input"
-                    id="email"
-                    name="email"
-                    type="email"
-                    inputmode="email"
-                    autocomplete="email"
-                    pattern="[^@\s]+@[^@\s]+\.[^@\s]+"
-                    required
-                    maxlength="120"
-                    aria-describedby="email-error"
-                  />
+                  <input class="field__input" id="email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="tu@mail.com" pattern="[^@\s]+@[^@\s]+\.[^@\s]+" required maxlength="120" aria-describedby="email-error" />
                   <p class="field__error" id="email-error" hidden></p>
                 </div>
 
                 <div class="field field--full">
-                  <label class="field__label" for="comment">
-                    Contanos sobre tu pieza <span class="field__optional">(opcional)</span>
-                  </label>
-                  <textarea
-                    class="field__input field__input--textarea"
-                    id="comment"
-                    name="comentario"
-                    rows="4"
-                    maxlength="500"
-                    aria-describedby="comment-count"
-                  ></textarea>
+                  <label class="field__label" for="comment">Contame sobre tu pieza <span class="field__optional">(opcional)</span></label>
+                  <textarea class="field__input field__input--textarea" id="comment" name="comentario" rows="4" maxlength="500" aria-describedby="comment-count"></textarea>
                   <p class="field__count" id="comment-count" data-comment-count>0 / 500</p>
                 </div>
 
@@ -298,6 +263,7 @@
                     <span class="btn__spinner" aria-hidden="true"></span>
                     <span data-submit-label>Enviar mi pieza</span>
                   </button>
+                  <p class="fields__note">Mandamos el archivo original, o tu edición como PNG.</p>
                   <p class="status-message status-message--chip" data-submit-status role="alert" hidden></p>
                 </div>
               </fieldset>
@@ -305,16 +271,31 @@
           </div>
 
           <div class="success" data-submit-success hidden tabindex="-1">
-            <p class="success__title" data-success-title>¡Gracias!</p>
+            <p class="success__title block cond" data-success-title>¡Gracias!</p>
             <p class="success__text" data-success-text></p>
-            <button type="button" class="btn btn--submit" data-submit-again>Enviar otra pieza</button>
+            <button type="button" class="btn" data-submit-again>Enviar otra pieza</button>
           </div>
         </div>
       </section>
     </main>
 
-    <footer class="site-footer">
-      <img src="/assets/logo.svg" alt="Jero Jones" width="123" height="25" />
+    <footer class="footer">
+      <div class="wrap--wide footer__inner">
+        <img class="footer__logo" src="/assets/logo-footer.svg" alt="jero jones" width="360" height="74" loading="lazy" />
+        <div class="clue-slot clue-slot--foot" data-clue-slot data-clue-group="footer" data-clue-media="desktop"></div>
+        <div class="footer__links">
+          <a class="pen" href="https://www.instagram.com/jerojonespfg2/" target="_blank" rel="noopener"
+            ><svg aria-hidden="true" viewBox="0 0 24 24" width="1.3em" height="1.3em"><rect x="1.5" y="1.5" width="21" height="21" rx="6" fill="none" stroke="currentColor" stroke-width="2.2" /><circle cx="12" cy="12" r="5" fill="none" stroke="currentColor" stroke-width="2.2" /><circle cx="17.6" cy="6.4" r="1.4" fill="currentColor" /></svg>Instagram</a
+          >
+          <a class="pen" href="https://open.spotify.com/artist/4Tk06wQxbCfPYcxqxGE8yJ" target="_blank" rel="noopener"
+            ><svg aria-hidden="true" viewBox="0 0 24 24" width="1.3em" height="1.3em"><circle cx="12" cy="12" r="12" fill="currentColor" /><g fill="none" stroke="#0B0B0B" stroke-linecap="round"><path d="M5.2 8.6c4.4-1.3 9.4-.9 13.6 1.4" stroke-width="2.2" /><path d="M6 12.4c3.7-1 7.7-.7 11.1 1.2" stroke-width="1.9" /><path d="M6.9 15.9c3-.8 6-.5 8.6.9" stroke-width="1.6" /></g></svg>Spotify</a
+          >
+          <a class="pen" href="https://youtube.com/@jerojones" target="_blank" rel="noopener"
+            ><svg aria-hidden="true" viewBox="0 0 28 20" width="1.6em" height="1.15em"><rect width="28" height="20" rx="5.5" fill="currentColor" /><path d="M11 5.8v8.4L18.6 10z" fill="#0B0B0B" /></svg>YouTube</a
+          >
+        </div>
+      </div>
+      <p class="wrap--wide footer__legal">© 2026 Berrocal · Galvagni · Serber. Diseño Gráfico Digital. ORT Argentina.</p>
     </footer>
 
     <script type="module" src="/src/main.js"></script>

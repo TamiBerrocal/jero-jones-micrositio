@@ -1,39 +1,46 @@
 :root {
-  /* Colors (from Figma) */
-  --color-red: #9e0000;
-  --color-gray: #d9d9d9;
-  --color-black: #020202;
-  --color-white: #ffffff;
-  --color-track: #c0c0c0;
-  --color-title: rgb(217 217 217 / 0.8);
+  /* Palette (from the Jero Jones pop system) */
+  --black: #0b0b0b;
+  --paper: #d4d4d4;
+  --pink: #ec8797;
+  --lavender: #a5aee4;
+  --indigo: #293484;
+  --navy: #293364;
+  --night: #281d60;
+  --cobalt: #4055bb;
+  --plum: #5c1d60;
+  --olive: #9a9c1c;
+  --rust: #9c381c;
+  --red: #b82a38;
+  --ochre: #9b5d1c;
+  --deep: #26265f;
+  --white: #f2f2f2;
+  --red-dark: #951e26;
 
-  /* Inter stands in for Helvetica Neue until the licensed font is available. */
-  --font-family: "Inter", "Helvetica Neue", Helvetica, Arial, sans-serif;
+  /* Microsite additions: hairlines and raised surfaces on the black ground (from Forma de Onda) */
+  --rule: #3a3a3a;
+  --surface: #141414;
 
-  /* Type scale: mobile minimum → 1440px desktop value from Figma */
-  --fs-display: clamp(3.5rem, 8.4vw, 7.5rem); /* 120px */
-  --fs-heading: clamp(1.75rem, 4.2vw, 3.75rem); /* 60px */
-  --fs-lead: clamp(1.125rem, 2.23vw, 2rem); /* 32px */
-  --fs-panel: clamp(1.25rem, 1.75vw, 1.5625rem); /* 25px */
-  --fs-body: clamp(1rem, 1.4vw, 1.25rem); /* 20px */
-  --fs-small: 0.9375rem; /* 15px */
-  --fs-franja: clamp(0.875rem, 1.67vw, 1.5rem); /* 24px */
+  /* Type: Helvetica Neue Condensed when installed locally, Arial Narrow otherwise */
+  --font-body: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  --font-cond: 'JJ Cond', 'Helvetica Neue', 'Arial Narrow', sans-serif;
 
   /* Layout */
-  --gutter: 16px;
-  --container: 1240px;
-  --container-step: 1168px;
-  --container-wide: 1252px;
-  --bar-stripe: 12px;
-  --bar-width: 100%;
-
-  --focus-color: var(--color-red);
+  --gutter: clamp(16px, 4vw, 56px);
+  --section-y: clamp(48px, 7vw, 112px);
+  --max: 1280px;
+  --max-wide: 1320px;
+  --nav-h: 64px; /* height of the fixed nav; nav.js keeps it in sync with the real bar */
 }
 
-@media (min-width: 768px) {
-  :root {
-    --gutter: 32px;
-    --bar-stripe: 27px;
-    --bar-width: 88.8%; /* 1279 / 1440 */
-  }
+@font-face {
+  font-family: 'JJ Cond';
+  src: local('HelveticaNeue-CondensedBlack'), local('Helvetica Neue Condensed Black');
+  font-weight: 900;
+}
+
+@font-face {
+  font-family: 'JJ Cond';
+  src: local('HelveticaNeue-CondensedBold'), local('Helvetica Neue Condensed Bold');
+  font-weight: 700;
 }

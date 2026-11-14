@@ -1,16 +1,8 @@
-export const DEFAULT_IMAGE_SRC = `${import.meta.env.BASE_URL}assets/default-photo.png`;
+import { DEFAULT_FILTERS } from './filters.js';
 
-export const DEFAULT_FILTERS = Object.freeze({
-  blur: 0,
-  brightness: 100,
-  contrast: 100,
-  grayscale: 0,
-  hueRotate: 0,
-  invert: 0,
-  opacity: 100,
-  saturate: 100,
-  sepia: 0,
-});
+export { DEFAULT_FILTERS };
+
+export const DEFAULT_IMAGE_SRC = `${import.meta.env.BASE_URL}assets/default-photo.png`;
 
 export const createInitialState = () => ({
   // { file, kind: 'image' | 'pdf', objectUrl } once the user uploads something
