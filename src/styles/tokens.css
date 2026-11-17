@@ -1,3 +1,9 @@
+/* Open fallbacks for Helvetica Neue (see --font-body / --font-cond), latin subset only */
+@import '@fontsource/roboto/latin-400.css';
+@import '@fontsource/roboto/latin-700.css';
+@import '@fontsource/roboto-condensed/latin-700.css';
+@import '@fontsource/roboto-condensed/latin-900.css';
+
 :root {
   /* Palette (from the Jero Jones pop system) */
   --black: #0b0b0b;
@@ -21,9 +27,10 @@
   --rule: #3a3a3a;
   --surface: #141414;
 
-  /* Type: Helvetica Neue Condensed when installed locally, Arial Narrow otherwise */
-  --font-body: 'Helvetica Neue', Helvetica, Arial, sans-serif;
-  --font-cond: 'JJ Cond', 'Helvetica Neue', 'Arial Narrow', sans-serif;
+  /* Type: Helvetica Neue (Condensed) when the device has it, otherwise the bundled Roboto
+     (Condensed). The browser only downloads Roboto where Helvetica is missing. */
+  --font-body: 'Helvetica Neue', 'Roboto', Arial, sans-serif;
+  --font-cond: 'Helvetica Neue Condensed', 'Roboto Condensed', 'Arial Narrow', sans-serif;
 
   /* Layout */
   --gutter: clamp(16px, 4vw, 56px);
@@ -33,14 +40,16 @@
   --nav-h: 64px; /* height of the fixed nav; nav.js keeps it in sync with the real bar */
 }
 
+/* Helvetica Neue Condensed only exists as faces inside the system's Helvetica Neue family, so these
+   faces gather the installed Black and Bold cuts under one name (font-weight picks between them). */
 @font-face {
-  font-family: 'JJ Cond';
+  font-family: 'Helvetica Neue Condensed';
   src: local('HelveticaNeue-CondensedBlack'), local('Helvetica Neue Condensed Black');
   font-weight: 900;
 }
 
 @font-face {
-  font-family: 'JJ Cond';
+  font-family: 'Helvetica Neue Condensed';
   src: local('HelveticaNeue-CondensedBold'), local('Helvetica Neue Condensed Bold');
   font-weight: 700;
 }
