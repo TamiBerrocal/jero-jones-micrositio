@@ -1,4 +1,4 @@
-import { canSubmit, getImageSource, isFiltered, resetStore } from './store.js';
+import { canSubmit, getImageSource, isFiltered, resetStore, setImageSource } from './store.js';
 import { toCssFilter } from './filters.js';
 import { submitEntry } from './api.js';
 
@@ -98,8 +98,7 @@ export function initSubmission(root, store, { getPreviewWidth }) {
     summaryPdf.toggleAttribute('hidden', !isPdf);
     summaryImage.hidden = isPdf;
     if (!isPdf) {
-      const src = getImageSource(state);
-      if (summaryImage.getAttribute('src') !== src) summaryImage.src = src;
+      setImageSource(summaryImage, getImageSource(state));
       summaryImage.style.filter = toCssFilter(state.filters);
     }
     summaryCaption.textContent = describeSummary(state);

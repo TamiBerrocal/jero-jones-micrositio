@@ -277,6 +277,12 @@
   object-fit: cover;
 }
 
+/* Until store.js sets the example photo on load, keep the empty frame clean (no alt text). */
+.editor__image:not([src]),
+.summary__image:not([src]) {
+  visibility: hidden;
+}
+
 .editor__notice {
   position: absolute;
   inset: auto 12px 12px;

@@ -1,4 +1,4 @@
-import { DEFAULT_FILTERS, getImageSource, isEditable, isFiltered } from './store.js';
+import { DEFAULT_FILTERS, getImageSource, isEditable, isFiltered, setImageSource } from './store.js';
 import { FILTERS, fillRange, formatFilterValue, toCssFilter } from './filters.js';
 
 function createFilterControl(config, onChange) {
@@ -42,8 +42,7 @@ export function initFilterEditor(root, store) {
 
   store.subscribe((state) => {
     const editable = isEditable(state);
-    const src = getImageSource(state);
-    if (previewImage.getAttribute('src') !== src) previewImage.src = src;
+    setImageSource(previewImage, getImageSource(state));
     previewImage.style.filter = editable ? toCssFilter(state.filters) : '';
 
     controls.forEach(({ config, input, output }) => {

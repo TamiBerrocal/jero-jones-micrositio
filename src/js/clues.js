@@ -8,7 +8,8 @@ const STICKERS = [
   {
     // Pista 1
     name: 'Bola de disco',
-    src: `${BASE}assets/sticker-disco-ball.png`,
+    src: `${BASE}assets/sticker-disco-ball.webp`,
+    size: [200, 200],
     width: 96,
     mobileWidth: 64,
     tips: [
@@ -21,7 +22,8 @@ const STICKERS = [
   {
     // Pista 2
     name: 'Rollo fotográfico',
-    src: `${BASE}assets/sticker-film-roll.png`,
+    src: `${BASE}assets/sticker-film-roll.webp`,
+    size: [162, 211],
     width: 70,
     mobileWidth: 46,
     tips: ['Crónicas del futuro.', 'Negativo / Positivo', 'Esta noche damos la vuelta.'],
@@ -29,7 +31,8 @@ const STICKERS = [
   {
     // Pista 3
     name: 'Cámara',
-    src: `${BASE}assets/sticker-camera.png`,
+    src: `${BASE}assets/sticker-camera.webp`,
+    size: [250, 173],
     width: 120,
     mobileWidth: 78,
     tips: ['¿Qué forma tiene lo que ves?', 'Enfocá el caos.', 'Fuera de foco, dentro de la señal.'],
@@ -69,7 +72,10 @@ function createClue(sticker, slot, desktop) {
   button.style.setProperty('--clue-y', `${baseY + random(11)}px`);
 
   const image = document.createElement('img');
+  image.loading = 'lazy'; // before src, or the browser starts the download anyway
   image.src = sticker.src;
+  // Intrinsic size so the browser reserves the box before the file arrives (CSS sets the display width).
+  [image.width, image.height] = sticker.size;
   image.alt = '';
 
   const tip = document.createElement('span');
