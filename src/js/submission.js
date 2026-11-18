@@ -1,6 +1,13 @@
 import { canSubmit, getImageSource, isFiltered, resetStore, setImageSource } from './store.js';
 import { toCssFilter } from './filters.js';
 import { submitEntry } from './api.js';
+import { MAX_BYTES } from './uploader.js';
+
+// Filtered photos are re-encoded as JPEG: a full-size lossless PNG of a phone photo easily passes the
+// 10 MB bucket limit. Start near-lossless, then trade quality and size until the piece fits.
+const MAX_EDGE = 4000;
+const JPEG_QUALITIES = [0.92, 0.85, 0.75, 0.65];
+const SHRINK_STEP = 0.8;
 
 const ERROR_MESSAGES = {
   valueMissing: 'Completá este campo.',
@@ -32,19 +39,35 @@ async function buildPiece(state, previewWidth) {
   if (upload && (upload.kind === 'pdf' || !isFiltered(state))) return upload.file;
 
   const image = await loadImage(getImageSource(state));
+  let scale = Math.min(1, MAX_EDGE / Math.max(image.naturalWidth, image.naturalHeight));
+
+  for (;;) {
+    const canvas = renderFiltered(image, state.filters, previewWidth, scale);
+    for (const quality of JPEG_QUALITIES) {
+      const blob = await toJpeg(canvas, quality);
+      if (blob.size <= MAX_BYTES) return new File([blob], 'pieza.jpg', { type: 'image/jpeg' });
+    }
+    scale *= SHRINK_STEP;
+  }
+}
+
+function renderFiltered(image, filters, previewWidth, scale) {
   const canvas = document.createElement('canvas');
-  canvas.width = image.naturalWidth;
-  canvas.height = image.naturalHeight;
+  canvas.width = Math.round(image.naturalWidth * scale);
+  canvas.height = Math.round(image.naturalHeight * scale);
 
   const context = canvas.getContext('2d');
-  const blurScale = previewWidth ? image.naturalWidth / previewWidth : 1;
-  context.filter = toCssFilter(state.filters, { blurScale });
-  context.drawImage(image, 0, 0);
+  // Blur radii are tuned on the on-screen preview, so scale them to the exported width.
+  const blurScale = previewWidth ? canvas.width / previewWidth : 1;
+  context.filter = toCssFilter(filters, { blurScale });
+  context.drawImage(image, 0, 0, canvas.width, canvas.height);
+  return canvas;
+}
 
-  const blob = await new Promise((resolve, reject) => {
-    canvas.toBlob((result) => (result ? resolve(result) : reject(new Error('Empty canvas'))), 'image/png');
+function toJpeg(canvas, quality) {
+  return new Promise((resolve, reject) => {
+    canvas.toBlob((result) => (result ? resolve(result) : reject(new Error('Empty canvas'))), 'image/jpeg', quality);
   });
-  return new File([blob], 'pieza.png', { type: 'image/png' });
 }
 
 export function initSubmission(root, store, { getPreviewWidth }) {
@@ -138,7 +161,9 @@ export function initSubmission(root, store, { getPreviewWidth }) {
       success.focus();
     } catch (error) {
       console.error(error);
-      submitStatus.textContent = 'No pudimos enviar tu pieza. Revisá tu conexión y probá de nuevo.';
+      submitStatus.textContent = error.tooLarge
+        ? 'Tu archivo pesa demasiado. Probá con uno más liviano.'
+        : 'No pudimos enviar tu pieza. Revisá tu conexión y probá de nuevo.';
       submitStatus.hidden = false;
     } finally {
       setSubmitting(false);

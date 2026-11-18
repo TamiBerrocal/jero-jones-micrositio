@@ -1,6 +1,6 @@
 import { DEFAULT_FILTERS } from './store.js';
 
-const MAX_BYTES = 10 * 1024 * 1024;
+export const MAX_BYTES = 10 * 1024 * 1024;
 
 const KIND_BY_MIME = {
   'image/jpeg': 'image',

@@ -26,7 +26,10 @@ function describeFile(file) {
 async function ensureOk(response, step) {
   if (response.ok) return;
   const detail = await response.text().catch(() => '');
-  throw new Error(`${step} failed (${response.status}): ${detail}`);
+  const error = new Error(`${step} failed (${response.status}): ${detail}`);
+  // Storage reports an oversized object as 413, sometimes wrapped in a 400 with a size message.
+  error.tooLarge = response.status === 413 || /too large|maximum allowed size/i.test(detail);
+  throw error;
 }
 
 async function simulateSubmission(formData) {
